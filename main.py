@@ -3,11 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://buildablog:buildablog@localhost:8889/buildablog'
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 db.init_app(app)
+
+
 
 class Blog(db.Model): 
 
