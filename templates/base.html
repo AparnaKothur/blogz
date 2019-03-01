@@ -6,21 +6,55 @@
                 h1{
                 text-align: center;
                 }
-
                 .error {
                 color: red;
+                }
+                footer{
+                text-align: center;
+                min-width: 300px;
+                margin-top: 10px;
+                  }
+
+                .class{
+                margin:10; padding:15}
+                body {
+                border: 5px solid purple;
+                padding: 5px;
+                margin: 5px;
+                }
+
+                li {
+                padding:20px;
+                display: inline;
                 }
 
             </style>
     </head>
-        <body>
-            <nav>
-                <a href="/">Main Blog Page</a>
-                <a href="newpost">Add a Blog Entry</a>
-            </nav>
+        <body class="">
+        <div style='float: right'>
+            {% if 'username' in session %}
+            Logged in as {{ session['username'] }}
+            {% endif %}
+        </div>
+        <h3><ul>
+           <li> <a href="/"> Home </a></li>
+            <li><a href="/blog">Main Blog Page</a></li>
+            <li><a href="newpost">Add a Blog Entry</a></li>
+            <li><a href="login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul></h3>
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        <ul>
+            {% for category, message in messages %}
+            <li class="{{category}}">{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endwith %}
             {% block content %}
-            
             {% endblock %}
-        </body>
-
+    <footer>
+        Contact me at <a href="mailto:test@test.com">Aparna@email.com</a><br>
+      
+    </footer>
+    </body>
 </html>
